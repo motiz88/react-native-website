@@ -20,6 +20,9 @@ function generateTable(rows) {
       );
     }
   }
+  if (!colWidths.size) {
+    return '';
+  }
   let header = '|',
     divider = '|';
   for (const [col, width] of colWidths) {
@@ -72,6 +75,27 @@ function generateProp(propName, prop) {
   );
 }
 
+// Formats information about a prop
+function generateMethod(method) {
+  const infoTable = generateTable([
+    {
+      ...(method.rnTags && method.rnTags.platform
+        ? {Platform: formatPlatformName(method.rnTags.platform)}
+        : {}),
+    },
+  ]);
+
+  return (
+    '### `' +
+    method.name +
+    '`' +
+    '\n' +
+    '\n' +
+    (method.description ? method.description + '\n\n' : '') +
+    infoTable
+  ).trim();
+}
+
 function maybeLinkifyType(flowType) {
   let url, text;
   if (Object.hasOwnProperty.call(magic.linkableTypeAliases, flowType.name)) {
@@ -102,11 +126,12 @@ function maybeLinkifyTypeName(name) {
 
 // Formats information about props
 function generateProps({props, composes}) {
-  const title = 'Props';
+  if (!props || !Object.keys(props).length) {
+    return '';
+  }
 
   return (
-    '## ' +
-    title +
+    '## Props' +
     '\n' +
     '\n' +
     (composes && composes.length
@@ -119,7 +144,29 @@ function generateProps({props, composes}) {
       .map(function(propName) {
         return generateProp(propName, props[propName]);
       })
-      .join('\n---\n\n')
+      .join('\n\n---\n\n')
+  );
+}
+
+function generateMethods({methods}) {
+  if (!methods || !methods.length) {
+    return '';
+  }
+
+  return (
+    '## Methods' +
+    '\n' +
+    '\n' +
+    [...methods]
+      .sort((a, b) =>
+        a.name.localeCompare(
+          b.name /* TODO @nocommit what's a neutral locale */
+        )
+      )
+      .map(function(method) {
+        return generateMethod(method);
+      })
+      .join('\n\n---\n\n')
   );
 }
 
@@ -138,7 +185,8 @@ function generateMarkdown({id, title}, reactAPI) {
     '\n\n' +
     '---\n\n' +
     '# Reference\n\n' +
-    generateProps(reactAPI);
+    generateProps(reactAPI) +
+    generateMethods(reactAPI);
 
   return markdownString;
 }
