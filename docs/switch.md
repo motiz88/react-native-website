@@ -3,28 +3,9 @@ id: switch
 title: Switch
 ---
 
-Renders a boolean input.
+A visual toggle between two mutually exclusive states.
 
 This is a controlled component that requires an `onValueChange` callback that updates the `value` prop in order for the component to reflect user actions. If the `value` prop is not updated, the component will continue to render the supplied `value` prop instead of the expected result of any user actions.
-
-```SnackPlayer name=switch
-import React, { useState } from 'react';
-import { Text, View, Switch } from 'react-native';
-
-export default function App() {
-  const [value, setValue] = useState(false);
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Switch
-        value={value}
-        onValueChange={v => {
-          setValue(v);
-        }}
-      />
-    </View>
-  );
-}
-```
 
 ---
 
@@ -36,11 +17,11 @@ Inherits [View Props](view.md#props).
 
 ### `disabled`
 
-If true the user won't be able to toggle the switch. Default value is false.
+Whether the switch is disabled. Defaults to false.
 
-| Type | Required |
-| ---- | -------- |
-| bool | No       |
+| Type      | Required |
+| --------- | -------- |
+| `boolean` | No       |
 
 ---
 
@@ -56,27 +37,31 @@ On iOS, custom color for the background. This background color can be seen eithe
 
 ### `onChange`
 
-Invoked when the user tries to change the value of the switch. Receives the change event as an argument. If you want to only receive the new value, use `onValueChange` instead.
+Called when the user tries to change the value of the switch.
 
-| Type     | Required |
-| -------- | -------- |
-| function | No       |
+Receives the change event as an argument. If you want to only receive the new value, use `onValueChange` instead.
+
+| Type                                                                                | Required |
+| ----------------------------------------------------------------------------------- | -------- |
+| <code>(event: SwitchChangeEvent) =&#x3E; Promise&#x3C;void&#x3E; &#124; void</code> | No       |
 
 ---
 
 ### `onValueChange`
 
-Invoked when the user tries to change the value of the switch. Receives the new value as an argument. If you want to instead receive an event, use `onChange`.
+Called when the user tries to change the value of the switch.
 
-| Type     | Required |
-| -------- | -------- |
-| function | No       |
+Receives the new value as an argument. If you want to instead receive an event, use `onChange`.
+
+| Type                                                                      | Required |
+| ------------------------------------------------------------------------- | -------- |
+| <code>(value: boolean) =&#x3E; Promise&#x3C;void&#x3E; &#124; void</code> | No       |
 
 ---
 
 ### `thumbColor`
 
-Color of the foreground switch grip. If this is set on iOS, the switch grip will lose its drop shadow.
+Custom color for the switch thumb.
 
 | Type               | Required |
 | ------------------ | -------- |
@@ -88,18 +73,18 @@ Color of the foreground switch grip. If this is set on iOS, the switch grip will
 
 Custom colors for the switch track.
 
-_iOS_: When the switch value is false, the track shrinks into the border. If you want to change the color of the background exposed by the shrunken track, use [`ios_backgroundColor`](switch.md#ios_backgroundColor).
+NOTE: On iOS when the switch value is false, the track shrinks into the border. If you want to change the color of the background exposed by the shrunken track, use `ios_backgroundColor`.
 
-| Type                                                          | Required |
-| ------------------------------------------------------------- | -------- |
-| object: {false: [color](colors.md), true: [color](colors.md)} | No       |
+| Type                                                                                        | Required |
+| ------------------------------------------------------------------------------------------- | -------- |
+| <code>\$ReadOnly&#x3C;{&#124; false?: ?ColorValue, true?: ?ColorValue, &#124;}&#x3E;</code> | No       |
 
 ---
 
 ### `value`
 
-The value of the switch. If true the switch will be turned on. Default value is false.
+Boolean value of the switch. Defaults to false.
 
-| Type | Required |
-| ---- | -------- |
-| bool | No       |
+| Type      | Required |
+| --------- | -------- |
+| `boolean` | No       |
