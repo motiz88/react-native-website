@@ -14,3 +14,4 @@ website/i18n/*
 
 .nvmrc
 website/scripts/sync-api-docs/generatedComponentApiDocs.js
+website/scripts/sync-api-docs/extracted.json

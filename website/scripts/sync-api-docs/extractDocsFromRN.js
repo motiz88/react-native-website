@@ -51,7 +51,13 @@ async function extractDocsFromRN(rnRoot) {
   }
 
   // Make sure output is JSON-safe
-  return JSON.parse(JSON.stringify(docs));
+  const docsSerialized = JSON.parse(JSON.stringify(docs));
+  await fs.writeFile(
+    path.join(__dirname, 'extracted.json'),
+    JSON.stringify(docsSerialized, null, 2),
+    'utf8'
+  );
+  return docsSerialized;
 }
 
 function cleanComponentResult(component) {
