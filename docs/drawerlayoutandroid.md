@@ -53,9 +53,9 @@ return (
 );
 ```
 
-| Type               | Required |
-| ------------------ | -------- |
-| [color](colors.md) | No       |
+| Type                            | Required |
+| ------------------------------- | -------- |
+| <code>null &#124; string</code> | No       |
 
 ---
 
@@ -130,9 +130,9 @@ Function called whenever the navigation view has been opened.
 
 Function called whenever there is an interaction with the navigation view.
 
-| Type                                   | Required |
-| -------------------------------------- | -------- |
-| `DirectEventHandler<DrawerSlideEvent>` | No       |
+| Type                                                                                          | Required |
+| --------------------------------------------------------------------------------------------- | -------- |
+| <code>(event: SyntheticEvent&#x3C;T&#x3E;) =&#x3E; void &#124; Promise&#x3C;void&#x3E;</code> | No       |
 
 ---
 
@@ -164,56 +164,118 @@ The navigation view that will be rendered to the side of the screen and can be p
 
 Make the drawer take the entire screen and draw the background of the status bar to allow it to open over the status bar. It will only have an effect on API 21+.
 
-| Type               | Required |
-| ------------------ | -------- |
-| [color](colors.md) | No       |
+| Type                            | Required |
+| ------------------------------- | -------- |
+| <code>null &#124; string</code> | No       |
 
 ---
 
 ### `style`
 
-| Type            | Required |
-| --------------- | -------- |
-| `ViewStyleProp` | No       |
+| Type                                                                                                                                           | Required |
+| ---------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| <code>&#124; null &#124; void &#124; T &#124; false &#124; &#x27;&#x27; &#124; \$ReadOnlyArray&#x3C;GenericStyleProp&#x3C;T&#x3E;&#x3E;</code> | No       |
 
 ## Methods
 
-### `blur`
+### `blur()`
+
+```jsx
+drawerLayoutAndroid.blur();
+```
 
 Native methods
 
 ---
 
-### `closeDrawer`
+### `closeDrawer()`
+
+```jsx
+drawerLayoutAndroid.closeDrawer();
+```
 
 Closes the drawer.
 
 ---
 
-### `focus`
+### `focus()`
+
+```jsx
+drawerLayoutAndroid.focus();
+```
 
 ---
 
-### `measure`
+### `measure()`
+
+```jsx
+drawerLayoutAndroid.measure(callback);
+```
+
+**Parameters:**
+
+| Name     | Type                                                                                             | Required | Description |
+| -------- | ------------------------------------------------------------------------------------------------ | -------- | ----------- |
+| callback | `( x: number, y: number, width: number, height: number, pageX: number, pageY: number, ) => void` | Yes      |             |
 
 ---
 
-### `measureInWindow`
+### `measureInWindow()`
+
+```jsx
+drawerLayoutAndroid.measureInWindow(callback);
+```
+
+**Parameters:**
+
+| Name     | Type                                                               | Required | Description |
+| -------- | ------------------------------------------------------------------ | -------- | ----------- |
+| callback | `( x: number, y: number, width: number, height: number, ) => void` | Yes      |             |
 
 ---
 
-### `measureLayout`
+### `measureLayout()`
+
+```jsx
+drawerLayoutAndroid.measureLayout(relativeToNativeNode, onSuccess, [onFail]);
+```
+
+**Parameters:**
+
+| Name                 | Type                                                                    | Required | Description |
+| -------------------- | ----------------------------------------------------------------------- | -------- | ----------- |
+| relativeToNativeNode | `number`                                                                | Yes      |             |
+| onSuccess            | `( left: number, top: number, width: number, height: number, ) => void` | Yes      |             |
+| onFail               | `() => void`                                                            | No       |             |
 
 ---
 
-### `openDrawer`
+### `openDrawer()`
+
+```jsx
+drawerLayoutAndroid.openDrawer();
+```
 
 Opens the drawer.
 
 ---
 
-### `positions`
+### `positions()`
+
+```jsx
+DrawerLayoutAndroid.positions();
+```
 
 ---
 
-### `setNativeProps`
+### `setNativeProps()`
+
+```jsx
+drawerLayoutAndroid.setNativeProps(nativeProps);
+```
+
+**Parameters:**
+
+| Name        | Type     | Required | Description |
+| ----------- | -------- | -------- | ----------- |
+| nativeProps | `Object` | Yes      |             |
